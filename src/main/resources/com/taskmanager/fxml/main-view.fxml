@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.taskmanager.controller.MainController"
+            styleClass="root-pane">
+
+    <top>
+        <VBox styleClass="header">
+            <Label text="✔ TaskManager" styleClass="header-title"/>
+            <Label text="Gerencie suas tarefas com praticidade" styleClass="header-subtitle"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" styleClass="content-area">
+
+            <HBox spacing="10" styleClass="filter-bar" alignment="CENTER_LEFT">
+                <Label text="Filtrar:" styleClass="filter-label"/>
+                <ComboBox fx:id="cbFiltro" styleClass="filtro-combo"/>
+            </HBox>
+
+            <TableView fx:id="tabelaTarefas" VBox.vgrow="ALWAYS" styleClass="task-table">
+                <columns>
+                    <TableColumn fx:id="colConcluida" text="✔" prefWidth="50" editable="true"/>
+                    <TableColumn fx:id="colTitulo"    text="Título"     prefWidth="300"/>
+                    <TableColumn fx:id="colPrioridade" text="Prioridade" prefWidth="120"/>
+                    <TableColumn fx:id="colData"      text="Criada em"  prefWidth="120"/>
+                </columns>
+                <placeholder>
+                    <Label text="Nenhuma tarefa encontrada. Clique em '+ Nova Tarefa' para começar!"
+                           styleClass="placeholder-label"/>
+                </placeholder>
+            </TableView>
+
+        </VBox>
+    </center>
+
+    <bottom>
+        <VBox styleClass="footer">
+
+            <HBox spacing="10" styleClass="action-bar" alignment="CENTER">
+                <Button fx:id="btnNovaTarefa" text="+ Nova Tarefa"
+                        styleClass="btn-primary"
+                        onAction="#abrirNovaTarefa"/>
+                <Button fx:id="btnEditar" text="✏ Editar"
+                        styleClass="btn-secondary"
+                        onAction="#editarTarefa"/>
+                <Button fx:id="btnConcluir" text="✔ Concluir"
+                        styleClass="btn-success"
+                        onAction="#concluirTarefa"/>
+                <Button fx:id="btnRemover" text="✖ Remover"
+                        styleClass="btn-danger"
+                        onAction="#removerTarefa"/>
+            </HBox>
+
+            <HBox styleClass="status-bar">
+                <Label fx:id="lblStatus" text="Carregando..." styleClass="status-label"/>
+            </HBox>
+
+        </VBox>
+    </bottom>
+
+</BorderPane>

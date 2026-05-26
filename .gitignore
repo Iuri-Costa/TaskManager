@@ -1,0 +1,29 @@
+# Build Maven
+target/
+
+# Arquivos do NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Logs
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Configurações de IDE
+.idea/
+.vscode/
+
+# Banco SQLite local
+*.db
+*.sqlite
+*.sqlite3

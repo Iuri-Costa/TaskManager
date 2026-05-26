@@ -1,0 +1,17 @@
+.root {
+    -fx-font-family: Arial;
+}
+
+.button {
+    -fx-padding: 5 10;
+}
+
+.text-field,
+.text-area,
+.combo-box {
+    -fx-padding: 5;
+}
+
+.erro-label {
+    -fx-text-fill: red;
+}
