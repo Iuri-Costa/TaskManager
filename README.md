@@ -1,6 +1,6 @@
 # TaskManager — Gerenciador de Tarefas
 
-Aplicação desktop para gerenciamento de tarefas desenvolvida em Java com JavaFX, persistência em MariaDB via JDBC, estrutura genérica com Generics e testes automatizados com JUnit 5.
+Aplicação desktop para gerenciamento de tarefas desenvolvida em Java com JavaFX, persistência em SQLite via JDBC, estrutura genérica com Generics e testes automatizados com JUnit 5.
 
 ![Tela principal](screenshots/TelaPrincipal.png)
 
@@ -12,11 +12,10 @@ Aplicação desktop para gerenciamento de tarefas desenvolvida em Java com JavaF
 |---|---|---|
 | Java | 21 | Linguagem principal |
 | JavaFX | 21 | Interface gráfica |
-| MariaDB | qualquer | Banco de dados da aplicação |
+| SQLite | 3.45 | Banco de dados da aplicação |
 | JDBC | — | Acesso ao banco |
 | Maven | 3.8+ | Build e dependências |
 | JUnit 5 | 5.10.2 | Testes automatizados |
-| SQLite (in-memory) | 3.45 | Banco isolado para os testes |
 
 ---
 
@@ -24,38 +23,20 @@ Aplicação desktop para gerenciamento de tarefas desenvolvida em Java com JavaF
 
 - Java 21 instalado e no PATH
 - Maven 3.8+ instalado
-- MariaDB instalado e rodando (apenas para executar a aplicação)
 
 Verifique as versões:
 ```bash
 java -version
 mvn -version
-mariadb --version
 ```
 
 ---
 
 ## 1. Configurar o banco de dados
 
-Execute o script SQL na raiz do projeto **uma única vez**:
-
-```bash
-sudo mariadb -u root < banco.sql
-```
-
-Esse script cria automaticamente:
-- O banco `taskmanager`
-- O usuário `iuri` com senha `123456`
-- A tabela `tarefas`
-- Um registro de exemplo
-
-> Se o seu MariaDB tiver senha no root, use: `sudo mariadb -u root -p < banco.sql`
-
----
+Nenhuma configuração necessária. O arquivo taskmanager.db é criado automaticamente na raiz do projeto quando a aplicação sobe pela primeira vez.
 
 ## 2. Rodar os testes
-
-Os testes **não dependem do MariaDB** — usam SQLite em memória e rodam em qualquer máquina:
 
 ```bash
 mvn test
@@ -77,8 +58,6 @@ São 33 testes divididos em:
 
 ## 3. Executar a aplicação
 
-Com o banco configurado (passo 1), rode:
-
 ```bash
 mvn javafx:run
 ```
@@ -97,7 +76,7 @@ TaskManager/
 │   │   │   ├── app/           # MainApplication (entry point JavaFX)
 │   │   │   ├── controller/    # MainController, FormController
 │   │   │   ├── dao/           # TarefaDAO (JDBC)
-│   │   │   ├── db/            # Conexao (gerencia conexão MariaDB)
+│   │   │   ├── db/            # Conexao (gerencia conexão SQLite)
 │   │   │   ├── generic/       # Repositorio<T,ID>, RepositorioGenerico<T>
 │   │   │   └── model/         # Tarefa
 │   │   └── resources/
@@ -109,7 +88,6 @@ TaskManager/
 │           ├── TarefaTest.java
 │           ├── TarefaDAOTest.java
 │           └── RepositorioGenericoTest.java
-├── banco.sql                  # Script de criação do banco
 ├── pom.xml
 └── README.md
 ```

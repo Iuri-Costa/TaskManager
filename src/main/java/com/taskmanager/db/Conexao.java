@@ -8,10 +8,7 @@ import java.sql.Statement;
 public class Conexao {
 
     private static final String URL =
-            "jdbc:mariadb://localhost:3306/taskmanager";
-
-    private static final String USER = "iuri";
-    private static final String PASSWORD = "123456";
+            "jdbc:sqlite:taskmanager.db";
 
     private Conexao() {
     }
@@ -19,23 +16,19 @@ public class Conexao {
     public static Connection obterConexao()
             throws SQLException {
 
-        return DriverManager.getConnection(
-                URL,
-                USER,
-                PASSWORD
-        );
+        return DriverManager.getConnection(URL);
     }
 
     public static void inicializarBanco() {
 
         String sql = """
                 CREATE TABLE IF NOT EXISTS tarefas (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    titulo VARCHAR(255) NOT NULL,
+                    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+                    titulo    VARCHAR(255) NOT NULL,
                     descricao TEXT,
                     prioridade VARCHAR(50) NOT NULL,
                     data_criacao DATE NOT NULL,
-                    concluida BOOLEAN NOT NULL DEFAULT FALSE
+                    concluida BOOLEAN NOT NULL DEFAULT 0
                 );
                 """;
 
@@ -62,12 +55,12 @@ public class Conexao {
 
         String sql = """
                 CREATE TABLE IF NOT EXISTS tarefas (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    titulo VARCHAR(255) NOT NULL,
+                    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+                    titulo    VARCHAR(255) NOT NULL,
                     descricao TEXT,
                     prioridade VARCHAR(50) NOT NULL,
                     data_criacao DATE NOT NULL,
-                    concluida BOOLEAN NOT NULL DEFAULT FALSE
+                    concluida BOOLEAN NOT NULL DEFAULT 0
                 );
                 """;
 
